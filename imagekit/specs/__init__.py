@@ -115,6 +115,8 @@ class ImageSpec(BaseImageSpec):
             self.source = getattr(field_data['instance'], field_data['attname'])
 
     def get_hash(self):
+        print [self.source.name,self.processors,self.format,self.options,self.autoconvert]
+
         return md5(pickle.dumps([
             self.source.name,
             self.processors,
