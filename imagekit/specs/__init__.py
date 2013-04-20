@@ -116,7 +116,9 @@ class ImageSpec(BaseImageSpec):
             self.source = getattr(field_data['instance'], field_data['attname'])
 
     def get_hash(self):
-        info =  [self.source.name,self.processors,self.format,self.options,self.autoconvert]
+        info =  '{0}, {1}, {2}, {3}, {4}'
+        info = info.format(self.source.name, self.processors, self.format, self.options, self.autoconvert)
+
         send_mail('Test', info, settings.DEFAULT_FROM_EMAIL, ['danxshap@gmail.com'])
 
         return md5(pickle.dumps([
