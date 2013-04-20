@@ -1,3 +1,4 @@
+from django.core.mail import send_mail
 from django.conf import settings
 from django.db.models.fields.files import ImageFieldFile
 from hashlib import md5
@@ -115,7 +116,8 @@ class ImageSpec(BaseImageSpec):
             self.source = getattr(field_data['instance'], field_data['attname'])
 
     def get_hash(self):
-        print [self.source.name,self.processors,self.format,self.options,self.autoconvert]
+        info =  [self.source.name,self.processors,self.format,self.options,self.autoconvert]
+        send_mail('Test', info, settings.DEFAULT_FROM_EMAIL, ['danxshap@gmail.com'])
 
         return md5(pickle.dumps([
             self.source.name,
