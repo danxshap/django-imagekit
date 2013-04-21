@@ -118,7 +118,7 @@ class ImageSpec(BaseImageSpec):
         processor_hash_attributes = [p.get_hash_attributes() for p in self.processors]
 
         return md5(pickle.dumps([
-            processor_hash_attributes,
+            str(processor_hash_attributes),
             self.source.name,
             self.format,
             self.options,
